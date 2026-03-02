@@ -1,212 +1,324 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Find Your Table</title>
-  <style>
-    body {
-      font-family: 'Georgia', serif;
-      text-align: center;
-      padding: 50px 20px;
-      background: #faf7f2;
-    }
+    <meta charset="UTF-8">
+    <title>Our Wedding</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #fdfaf6;
+        }
 
-    h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
+        /* Tab Buttons */
+        .tab {
+            display: flex;
+            background-color: #651313;
+            border-bottom: 2px solid #eee;
+        }
 
-    p {
-      font-size: 18px;
-      color: #555;
-    }
+        .tab button {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            background: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-    input {
-      padding: 12px;
-      width: 280px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
+        .tab button:hover {
+            background-color: #230909;
+        }
 
-    button {
-      padding: 12px 18px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: none;
-      background-color: #c59d5f;
-      color: white;
-      cursor: pointer;
-      margin-left: 10px;
-    }
+        .tab button.active {
+            border-bottom: 3px solid #d4af37;
+            font-weight: bold;
+        }
 
-    button:hover {
-      background-color: #a67c3b;
-    }
-
-    #result {
-      margin-top: 35px;
-      font-size: 26px;
-      font-weight: bold;
-    }
-  </style>
+        /* Tab Content */
+        .tabcontent {
+            display: none;
+            padding: 30px;
+        }
+    </style>
 </head>
 <body>
 
-  <h1>Welcome to Our Wedding 💍</h1>
-  <p>Please enter your name to find your table</p>
+<h1 style="text-align:center; padding:20px;">Lanxin & Sungmin Wedding</h1>
 
-  <input type="text" id="nameInput" placeholder="Enter your name">
-  <button onclick="findTable()">Find My Table</button>
+<div class="tab">
+    <button class="tablinks active" onclick="openTab(event, 'Program')">Program</button>
+    <button class="tablinks" onclick="openTab(event, 'Drink')">What to Drink</button>
+    <button class="tablinks" onclick="openTab(event, 'Food')">What to Eat</button>
+    <button class="tablinks" onclick="openTab(event, 'Seating')">Seating Chart</button>
+</div>
 
-  <div id="result"></div>
+<div id="Program" class="tabcontent" style="display:block;">
+    <h2>Wedding Program</h2>
+    <p>5:00 PM – Ceremony</p>
+    <p>5:30 PM – Cocktail Hour</p>
+    <p>7:00 PM – Dinner</p>
+    <p>8:00 PM – Dancing 🎉</p>
+</div>
 
-  <script>
-    const guests = [
-      { name: "Kun Yim", table: "Table 6" },
-      { name: "Ae Ja Yim", table: "Table 6" },
-      { name: "Sung Ja Fowler", table: "Table 6" },
-      { name: "Mike Fowler", table: "Table 6" },
-      { name: "Pun Cha Lee", table: "Table 6" },
-      { name: "Sung Chul Lee", table: "Table 6" },
-      { name: "Ki Soon Kim", table: "Table 6" },
-      { name: "Jinlian Zhang", table: "Table 6" },
-      { name: "Minhai Jiang", table: "Table 6" },
+<div id="Drink" class="tabcontent">
+    <h2>What to Drink</h2>
+    <ul>
+        <li>Signature Cocktail 🍸</li>
+        <li>Red & White Wine 🍷</li>
+        <li>Beer 🍺</li>
+        <li>Mocktails & Soft Drinks</li>
+    </ul>
+</div>
 
-      { name: "Rachel Pustelnik", table: "Table 8" },
-      { name: "Matthew Pustelnik", table: "Table 8" },
-      { name: "Jacob Pustelnik", table: "Table 8" },
-      { name: "Leah Pustelnik", table: "Table 8" },
-      { name: "Rebekah Pustelnik", table: "Table 8" },
-      { name: "Faith Kim", table: "Table 8" },
-      { name: "Caleb Kim", table: "Table 8" },
-      { name: "Chang Kim", table: "Table 8" },
-      { name: "Joanne Kim", table: "Table 8" },
+<div id="Food" class="tabcontent">
+    <h2>What to Eat</h2>
+    <ul>
+        <li>Appetizers</li>
+        <li>Main Course Options</li>
+        <li>Vegetarian Option</li>
+        <li>Wedding Cake 🎂</li>
+    </ul>
+</div>
 
-      { name: "Steven An", table: "Table 3" },
-      { name: "Oliver Dam", table: "Table 3" },
-      { name: "Kacie Lam", table: "Table 3" },
-      { name: "Connie Tsai", table: "Table 3" },
-      { name: "Alex Pelkey", table: "Table 3" },
-      { name: "Jacob Yun", table: "Table 3" },
-      { name: "Julie Duong", table: "Table 3" },
-      { name: "Kim Ngo", table: "Table 3" },
-      { name: "Jay-R Sanchez", table: "Table 3" },
+<div id="Seating" class="tabcontent">
+    <h2>Seating Chart</h2>
+    <!-- Paste your current seating chart code here -->
+    <head>
+      <meta charset="UTF-8">
+      <title>Find Your Table</title>
+      <style>
+        body {
+          font-family: 'Georgia', serif;
+          text-align: center;
+          padding: 50px 20px;
+          background: #faf7f2;
+        }
+    
+        h1 {
+          font-size: 36px;
+          margin-bottom: 10px;
+        }
+    
+        p {
+          font-size: 18px;
+          color: #555;
+        }
+    
+        input {
+          padding: 12px;
+          width: 280px;
+          font-size: 16px;
+          border-radius: 8px;
+          border: 1px solid #ccc;
+        }
+    
+        button {
+          padding: 12px 18px;
+          font-size: 16px;
+          border-radius: 8px;
+          border: none;
+          background-color: #c59d5f;
+          color: white;
+          cursor: pointer;
+          margin-left: 10px;
+        }
+    
+        button:hover {
+          background-color: #a67c3b;
+        }
+    
+        #result {
+          margin-top: 35px;
+          font-size: 26px;
+          font-weight: bold;
+        }
+      </style>
+    </head>
+    <body>
+    
+      <h1>Welcome to Our Wedding 💍</h1>
+      <p>Please enter your name to find your table</p>
+    
+      <input type="text" id="nameInput" placeholder="Enter your name">
+      <button onclick="findTable()">Find My Table</button>
+    
+      <div id="result"></div>
+    
+      <script>
+        const guests = [
+          { name: "Kun Yim", table: "Table 6" },
+          { name: "Ae Ja Yim", table: "Table 6" },
+          { name: "Sung Ja Fowler", table: "Table 6" },
+          { name: "Mike Fowler", table: "Table 6" },
+          { name: "Pun Cha Lee", table: "Table 6" },
+          { name: "Sung Chul Lee", table: "Table 6" },
+          { name: "Ki Soon Kim", table: "Table 6" },
+          { name: "Jinlian Zhang", table: "Table 6" },
+          { name: "Minhai Jiang", table: "Table 6" },
+    
+          { name: "Rachel Pustelnik", table: "Table 8" },
+          { name: "Matthew Pustelnik", table: "Table 8" },
+          { name: "Jacob Pustelnik", table: "Table 8" },
+          { name: "Leah Pustelnik", table: "Table 8" },
+          { name: "Rebekah Pustelnik", table: "Table 8" },
+          { name: "Faith Kim", table: "Table 8" },
+          { name: "Caleb Kim", table: "Table 8" },
+          { name: "Chang Kim", table: "Table 8" },
+          { name: "Joanne Kim", table: "Table 8" },
+    
+          { name: "Steven An", table: "Table 3" },
+          { name: "Oliver Dam", table: "Table 3" },
+          { name: "Kacie Lam", table: "Table 3" },
+          { name: "Connie Tsai", table: "Table 3" },
+          { name: "Alex Pelkey", table: "Table 3" },
+          { name: "Jacob Yun", table: "Table 3" },
+          { name: "Julie Duong", table: "Table 3" },
+          { name: "Kim Ngo", table: "Table 3" },
+          { name: "Jay-R Sanchez", table: "Table 3" },
+    
+          { name: "Daqi Sun", table: "Table 4" },
+          { name: "Si Cheng", table: "Table 4" },
+          { name: "Yazhi Sun", table: "Table 4" },
+          { name: "Yibin Xue", table: "Table 4" },
+          { name: "Zeyang Li", table: "Table 4" },
+          { name: "Yuxin Kan", table: "Table 4" },
+          { name: "Xi Qiu", table: "Table 4" },
+          { name: "Michael Pepe", table: "Table 4" },
+          { name: "Xinyu Lu", table: "Table 4" },
+    
+          { name: "Ludi Zhan", table: "Table 9" },
+          { name: "Yanrong Mu", table: "Table 9" },
+          { name: "Yiwen Hua", table: "Table 9" },
+          { name: "Wan Jiang", table: "Table 9" },
+          { name: "Yang Liu", table: "Table 9" },
+          { name: "Yingxin Cao", table: "Table 9" },
+          { name: "Yiqun Rong", table: "Table 9" },
+          { name: "Shuang Liang", table: "Table 9" },
+          { name: "Pao-yang Tsai", table: "Table 9" },
+          { name: "Jiahao Yang", table: "Table 9" },
+    
+          { name: "Matthew Rajaratnam", table: "Table 1" },
+          { name: "James An", table: "Table 1" },
+          { name: "Shelby Roy", table: "Table 1" },
+          { name: "Lena Choi", table: "Table 1" },
+          { name: "Josh Tsou", table: "Table 1" },
+          { name: "Eric Siporen", table: "Table 1" },
+          { name: "Vivi Fan", table: "Table 1" },
+          { name: "Helen Yu", table: "Table 1" },
+          { name: "Nik Tan", table: "Table 1" },
+          { name: "Stephen Palani", table: "Table 1" },
+    
+          { name: "Khoi Tran", table: "Table 2" },
+          { name: "Dora Yu-Tran", table: "Table 2" },
+          { name: "Trixie Go", table: "Table 2" },
+          { name: "Henry Go", table: "Table 2" },
+          { name: "Justine Vasquez", table: "Table 2" },
+          { name: "Liz Villarica", table: "Table 2" },
+          { name: "Wendy Yu", table: "Table 2" },
+          { name: "Felix Lu", table: "Table 2" },
+    
+          { name: "Jamie Kim", table: "Table 11" },
+          { name: "James Kim", table: "Table 11" },
+          { name: "Mason Kim", table: "Table 11" },
+          { name: "Avery Kim", table: "Table 11" },
+          { name: "Jason Lee", table: "Table 11" },
+          { name: "Jade Bono", table: "Table 11" },
+          { name: "Jaxx Bono", table: "Table 11" },
+          { name: "Jett Bono", table: "Table 11" },
+          { name: "John Bono", table: "Table 11" },
+          { name: "Esther Bono", table: "Table 11" },
+    
+          { name: "Nancy Kim", table: "Table 12" },
+          { name: "Kevin Kim", table: "Table 12" },
+          { name: "Keegan Kim", table: "Table 12" },
+          { name: "Natalie Kim", table: "Table 12" },
+          { name: "Janine Yi", table: "Table 12" },
+          { name: "Kenny Yi", table: "Table 12" },
+          { name: "Charles Seo", table: "Table 12" },
+          { name: "Drew Seo", table: "Table 12" },
+          { name: "Quinn Seo", table: "Table 12" },
+          { name: "Deborah Yim", table: "Table 12" },
+    
+          { name: "Hyung Kyu Park", table: "Table 7" },
+          { name: "Hyun Joo Park", table: "Table 7" },
+          { name: "Paul Choi", table: "Table 7" },
+          { name: "Amy Choi", table: "Table 7" },
+          { name: "Hong Suk Kang", table: "Table 7" },
+          { name: "In Sook Kang", table: "Table 7" },
+          { name: "Paul Yum", table: "Table 7" },
+          { name: "Dennis Kimm", table: "Table 7" },
+          { name: "Nancy Kimm", table: "Table 7" },
+    
+          { name: "Jason Melo", table: "Table 5" },
+          { name: "Evan Forbes", table: "Table 5" },
+          { name: "Ryan Cuddeback", table: "Table 5" },
+          { name: "Aaron Howington", table: "Table 5" },
+          { name: "Chris Vidimos", table: "Table 5" },
+          { name: "Kumary Vasquez", table: "Table 5" },
+          { name: "Maya Agrawal", table: "Table 5" },
+          { name: "Ankush Agrawal", table: "Table 5" },
+    
+          { name: "Hannah Hyon", table: "Table 10" },
+          { name: "Holly Hyon", table: "Table 10" },
+          { name: "Brandon Solis", table: "Table 10" },
+          { name: "Guest of Brian Kim", table: "Table 10" },
+          { name: "Brian Kim", table: "Table 10" },
+          { name: "Micah Brown", table: "Table 10" },
+          { name: "Grace Brown", table: "Table 10" },
+          { name: "Charlene Shin", table: "Table 10" },
+          { name: "Joel Hyon", table: "Table 10" },
+          { name: "Charlee Hyon", table: "Table 10" }
+        ];
+    
+        function findTable() {
+          const input = document.getElementById("nameInput").value.trim().toLowerCase();
+          const resultDiv = document.getElementById("result");
+    
+          const matches = guests.filter(g =>
+            g.name.toLowerCase().includes(input)
+          );
+    
+          if (matches.length === 1) {
+            resultDiv.innerHTML =
+              `🎉 ${matches[0].name}, you are seated at <br><span style="font-size:32px;color:#c59d5f">${matches[0].table}</span>`;
+          } else if (matches.length > 1) {
+            resultDiv.innerHTML =
+              "Multiple matches found. Please enter full name.";
+          } else {
+            resultDiv.innerHTML =
+              "We couldn’t find your name. Please check spelling or see staff.";
+          }
+        }
+      </script>
+    
+    </body>
+</div>
 
-      { name: "Daqi Sun", table: "Table 4" },
-      { name: "Si Cheng", table: "Table 4" },
-      { name: "Yazhi Sun", table: "Table 4" },
-      { name: "Yibin Xue", table: "Table 4" },
-      { name: "Zeyang Li", table: "Table 4" },
-      { name: "Yuxin Kan", table: "Table 4" },
-      { name: "Xi Qiu", table: "Table 4" },
-      { name: "Michael Pepe", table: "Table 4" },
-      { name: "Xinyu Lu", table: "Table 4" },
+<script>
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
 
-      { name: "Ludi Zhan", table: "Table 9" },
-      { name: "Yanrong Mu", table: "Table 9" },
-      { name: "Yiwen Hua", table: "Table 9" },
-      { name: "Wan Jiang", table: "Table 9" },
-      { name: "Yang Liu", table: "Table 9" },
-      { name: "Yingxin Cao", table: "Table 9" },
-      { name: "Yiqun Rong", table: "Table 9" },
-      { name: "Shuang Liang", table: "Table 9" },
-      { name: "Pao-yang Tsai", table: "Table 9" },
-      { name: "Jiahao Yang", table: "Table 9" },
-
-      { name: "Matthew Rajaratnam", table: "Table 1" },
-      { name: "James An", table: "Table 1" },
-      { name: "Shelby Roy", table: "Table 1" },
-      { name: "Lena Choi", table: "Table 1" },
-      { name: "Josh Tsou", table: "Table 1" },
-      { name: "Eric Siporen", table: "Table 1" },
-      { name: "Vivi Fan", table: "Table 1" },
-      { name: "Helen Yu", table: "Table 1" },
-      { name: "Nik Tan", table: "Table 1" },
-      { name: "Stephen Palani", table: "Table 1" },
-
-      { name: "Khoi Tran", table: "Table 2" },
-      { name: "Dora Yu-Tran", table: "Table 2" },
-      { name: "Trixie Go", table: "Table 2" },
-      { name: "Henry Go", table: "Table 2" },
-      { name: "Justine Vasquez", table: "Table 2" },
-      { name: "Liz Villarica", table: "Table 2" },
-      { name: "Wendy Yu", table: "Table 2" },
-      { name: "Felix Lu", table: "Table 2" },
-
-      { name: "Jamie Kim", table: "Table 11" },
-      { name: "James Kim", table: "Table 11" },
-      { name: "Mason Kim", table: "Table 11" },
-      { name: "Avery Kim", table: "Table 11" },
-      { name: "Jason Lee", table: "Table 11" },
-      { name: "Jade Bono", table: "Table 11" },
-      { name: "Jaxx Bono", table: "Table 11" },
-      { name: "Jett Bono", table: "Table 11" },
-      { name: "John Bono", table: "Table 11" },
-      { name: "Esther Bono", table: "Table 11" },
-
-      { name: "Nancy Kim", table: "Table 12" },
-      { name: "Kevin Kim", table: "Table 12" },
-      { name: "Keegan Kim", table: "Table 12" },
-      { name: "Natalie Kim", table: "Table 12" },
-      { name: "Janine Yi", table: "Table 12" },
-      { name: "Kenny Yi", table: "Table 12" },
-      { name: "Charles Seo", table: "Table 12" },
-      { name: "Drew Seo", table: "Table 12" },
-      { name: "Quinn Seo", table: "Table 12" },
-      { name: "Deborah Yim", table: "Table 12" },
-
-      { name: "Hyung Kyu Park", table: "Table 7" },
-      { name: "Hyun Joo Park", table: "Table 7" },
-      { name: "Paul Choi", table: "Table 7" },
-      { name: "Amy Choi", table: "Table 7" },
-      { name: "Hong Suk Kang", table: "Table 7" },
-      { name: "In Sook Kang", table: "Table 7" },
-      { name: "Paul Yum", table: "Table 7" },
-      { name: "Dennis Kimm", table: "Table 7" },
-      { name: "Nancy Kimm", table: "Table 7" },
-
-      { name: "Jason Melo", table: "Table 5" },
-      { name: "Evan Forbes", table: "Table 5" },
-      { name: "Ryan Cuddeback", table: "Table 5" },
-      { name: "Aaron Howington", table: "Table 5" },
-      { name: "Chris Vidimos", table: "Table 5" },
-      { name: "Kumary Vasquez", table: "Table 5" },
-      { name: "Maya Agrawal", table: "Table 5" },
-      { name: "Ankush Agrawal", table: "Table 5" },
-
-      { name: "Hannah Hyon", table: "Table 10" },
-      { name: "Holly Hyon", table: "Table 10" },
-      { name: "Brandon Solis", table: "Table 10" },
-      { name: "Guest of Brian Kim", table: "Table 10" },
-      { name: "Brian Kim", table: "Table 10" },
-      { name: "Micah Brown", table: "Table 10" },
-      { name: "Grace Brown", table: "Table 10" },
-      { name: "Charlene Shin", table: "Table 10" },
-      { name: "Joel Hyon", table: "Table 10" },
-      { name: "Charlee Hyon", table: "Table 10" }
-    ];
-
-    function findTable() {
-      const input = document.getElementById("nameInput").value.trim().toLowerCase();
-      const resultDiv = document.getElementById("result");
-
-      const matches = guests.filter(g =>
-        g.name.toLowerCase().includes(input)
-      );
-
-      if (matches.length === 1) {
-        resultDiv.innerHTML =
-          `🎉 ${matches[0].name}, you are seated at <br><span style="font-size:32px;color:#c59d5f">${matches[0].table}</span>`;
-      } else if (matches.length > 1) {
-        resultDiv.innerHTML =
-          "Multiple matches found. Please enter full name.";
-      } else {
-        resultDiv.innerHTML =
-          "We couldn’t find your name. Please check spelling or see staff.";
-      }
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
     }
-  </script>
+
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
 
 </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+
 </html>
