@@ -201,6 +201,28 @@
       font-size: 1.5rem;
     }
 
+    .floorplan {
+      margin-top: 18px;
+      padding: 12px;
+      border: 1px solid #e2d5dd;
+      border-radius: 12px;
+      background: #fffafd;
+    }
+
+    .floorplan img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .floorplan figcaption {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
     .hero-gallery {
       margin-top: 18px;
       display: grid;
@@ -263,10 +285,10 @@
     </div>
 
     <div class="tab" role="tablist" aria-label="Wedding Info Tabs">
-      <button class="tablinks active" data-tab="Program" role="tab" aria-selected="true">Program</button>
-      <button class="tablinks" data-tab="Drink" role="tab" aria-selected="false">What to Drink</button>
-      <button class="tablinks" data-tab="Food" role="tab" aria-selected="false">What to Eat</button>
-      <button class="tablinks" data-tab="Seating" role="tab" aria-selected="false">Seating Chart Lookup</button>
+      <button class="tablinks active" data-tab="Program" data-hash="program" role="tab" aria-selected="true">Program</button>
+      <button class="tablinks" data-tab="Drink" data-hash="drink" role="tab" aria-selected="false">What to Drink</button>
+      <button class="tablinks" data-tab="Food" data-hash="food" role="tab" aria-selected="false">What to Eat</button>
+      <button class="tablinks" data-tab="Seating" data-hash="seating" role="tab" aria-selected="false">Seating Chart Lookup</button>
     </div>
 
     <section id="Program" class="tabcontent active" role="tabpanel">
@@ -340,6 +362,10 @@
       </div>
 
       <div id="result" aria-live="polite"></div>
+      <figure id="floorplan" class="floorplan" style="display: none;">
+        <img src="floorplan.png" alt="Wedding floor plan showing table layout" loading="lazy">
+        <figcaption>Floor plan for table locations.</figcaption>
+      </figure>
     </section>
   </div>
 
@@ -458,7 +484,21 @@
       { name: "Charlee Hyon", table: "Table 10" }
     ];
 
-    function openTab(tabName) {
+    const tabHashByName = {
+      Program: "program",
+      Drink: "drink",
+      Food: "food",
+      Seating: "seating"
+    };
+
+    const tabNameByHash = {
+      program: "Program",
+      drink: "Drink",
+      food: "Food",
+      seating: "Seating"
+    };
+
+    function openTab(tabName, updateHash = false) {
       document.querySelectorAll(".tabcontent").forEach((panel) => {
         panel.classList.remove("active");
       });
@@ -471,17 +511,36 @@
       const selectedPanel = document.getElementById(tabName);
       const selectedButton = document.querySelector(`.tablinks[data-tab="${tabName}"]`);
 
+      if (!selectedPanel || !selectedButton) {
+        return;
+      }
+
       selectedPanel.classList.add("active");
       selectedButton.classList.add("active");
       selectedButton.setAttribute("aria-selected", "true");
+
+      if (updateHash) {
+        const nextHash = tabHashByName[tabName];
+        if (nextHash && window.location.hash !== `#${nextHash}`) {
+          window.location.hash = nextHash;
+        }
+      }
+    }
+
+    function openTabFromHash() {
+      const hash = window.location.hash.replace("#", "").toLowerCase();
+      const tabName = tabNameByHash[hash] || "Program";
+      openTab(tabName);
     }
 
     function findTable() {
       const input = document.getElementById("nameInput").value.trim().toLowerCase();
       const resultDiv = document.getElementById("result");
+      const floorPlan = document.getElementById("floorplan");
 
       if (!input) {
         resultDiv.textContent = "Please enter your name first.";
+        floorPlan.style.display = "none";
         return;
       }
 
@@ -489,20 +548,26 @@
 
       if (matches.length === 1) {
         resultDiv.innerHTML = `${matches[0].name}, you are seated at <span class="result-table">${matches[0].table}</span>.`;
+        floorPlan.style.display = "block";
         return;
       }
 
       if (matches.length > 1) {
         resultDiv.textContent = "Multiple matches found. Please enter your full name.";
+        floorPlan.style.display = "none";
         return;
       }
 
       resultDiv.textContent = "We could not find your name. Please check spelling or ask staff for help.";
+      floorPlan.style.display = "none";
     }
 
     document.querySelectorAll(".tablinks").forEach((button) => {
-      button.addEventListener("click", () => openTab(button.dataset.tab));
+      button.addEventListener("click", () => openTab(button.dataset.tab, true));
     });
+
+    window.addEventListener("hashchange", openTabFromHash);
+    openTabFromHash();
 
     document.getElementById("findTableBtn").addEventListener("click", findTable);
     document.getElementById("nameInput").addEventListener("keydown", (event) => {
