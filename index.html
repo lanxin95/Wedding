@@ -48,6 +48,20 @@
       font-size: clamp(1.9rem, 3vw, 2.7rem);
     }
 
+    .title-line {
+      display: block;
+    }
+
+    .title-line.top {
+      font-size: 0.62em;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+      font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+      font-weight: 600;
+    }
+
     .tab {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -252,6 +266,15 @@
         padding-top: 22px;
       }
 
+      h1 {
+        font-size: clamp(1.7rem, 8vw, 2.1rem);
+      }
+
+      .title-line.top {
+        font-size: 0.5em;
+        letter-spacing: 0.05em;
+      }
+
       .tab {
         grid-template-columns: 1fr 1fr;
       }
@@ -277,7 +300,10 @@
 </head>
 <body>
   <div class="page">
-    <h1>Welcome to The Wedding of Lanxin & Sungmin</h1>
+    <h1>
+      <span class="title-line top">Welcome to wedding of</span>
+      <span class="title-line">Lanxin & Sungmin</span>
+    </h1>
     <div class="hero-gallery" aria-label="Wedding Photos">
       <img src="DSCF8748_Small.jpg" alt="Wedding photo 1" loading="lazy">
       <img src="DSCF9076_Small.jpg" alt="Wedding photo 2" loading="lazy">
