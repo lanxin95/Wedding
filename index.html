@@ -64,7 +64,7 @@
 
     .tab {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(6, minmax(0, 1fr));
       background: linear-gradient(100deg, var(--primary), #8ca3c0);
       border-radius: 16px;
       overflow: hidden;
@@ -261,6 +261,30 @@
       color: #43374a;
     }
 
+    .party-role {
+      margin-top: 16px;
+      margin-bottom: 6px;
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 1.05rem;
+      color: #43374a;
+    }
+
+    .album-link {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      color: #312632;
+      background: linear-gradient(130deg, #f6e4ec, var(--accent));
+      border: 1px solid #dcb6c5;
+    }
+
+    .album-link:hover {
+      background: linear-gradient(130deg, #f2d9e4, #c792a6);
+    }
+
     @media (max-width: 700px) {
       .page {
         padding-top: 22px;
@@ -312,8 +336,10 @@
 
     <div class="tab" role="tablist" aria-label="Wedding Info Tabs">
       <button class="tablinks active" data-tab="Program" data-hash="program" role="tab" aria-selected="true">Program</button>
+      <button class="tablinks" data-tab="Party" data-hash="party" role="tab" aria-selected="false">Wedding Party</button>
       <button class="tablinks" data-tab="Drink" data-hash="drink" role="tab" aria-selected="false">What to Drink</button>
       <button class="tablinks" data-tab="Food" data-hash="food" role="tab" aria-selected="false">What to Eat</button>
+      <button class="tablinks" data-tab="Album" data-hash="album" role="tab" aria-selected="false">Photo Album</button>
       <button class="tablinks" data-tab="Seating" data-hash="seating" role="tab" aria-selected="false">Seating Chart Lookup</button>
     </div>
 
@@ -322,7 +348,7 @@
       <p>5:00 PM - Ceremony</p>
       <p>5:30 PM - Cocktail & Boba Hour</p>
       <p>7:00 PM - Dinner</p>
-      <p>8:00 PM - Dancing</p>
+      <p>8:00 PM - Dancing & Photobooth Open</p>
     </section>
 
     <section id="Drink" class="tabcontent" role="tabpanel">
@@ -348,6 +374,42 @@
           </ul>
         </article>
       </div>
+    </section>
+
+    <section id="Party" class="tabcontent" role="tabpanel">
+      <h2>Meet The Wedding Party</h2>
+
+      <h3 class="party-role">Parents of the Bride</h3>
+      <p>Jinlian Zhang and Minhai Jiang</p>
+
+      <h3 class="party-role">Parents of the Groom</h3>
+      <p>Ae Ja Yim and Kun Yim</p>
+
+      <h3 class="party-role">Officiant</h3>
+      <p>Chang Kim</p>
+
+      <h3 class="party-role">Maid of Honor</h3>
+      <p>Daqi Sun</p>
+
+      <h3 class="party-role">Bridesmaids</h3>
+      <p>Si Cheng</p>
+      <p>Yuxin Kan</p>
+      <p>Xi Qiu</p>
+
+      <h3 class="party-role">Best Man</h3>
+      <p>Matthew Rajaratnam</p>
+
+      <h3 class="party-role">Groomsmen</h3>
+      <p>Stephen Palani</p>
+      <p>James An</p>
+      <p>Nick Tan</p>
+
+      <h3 class="party-role">Flower Girl</h3>
+      <p>Natalie Kim</p>
+
+      <h3 class="party-role">Ring Bearer</h3>
+      <p>Drew Seo</p>
+
     </section>
 
     <section id="Food" class="tabcontent" role="tabpanel">
@@ -376,6 +438,12 @@
 
       <h3 class="menu-section-title">Kids Meal</h3>
       <p>Chicken tenders, French fries, & fresh fruit</p>
+    </section>
+
+    <section id="Album" class="tabcontent" role="tabpanel">
+      <h2>Photo Album</h2>
+      <p>Feel free to upload and view photos in our shared Google Photos album.</p>
+      <a class="album-link" href="https://photos.app.goo.gl/w1augfuAxWu5HU92A" target="_blank" rel="noopener noreferrer">Open Google Photos Album</a>
     </section>
 
     <section id="Seating" class="tabcontent" role="tabpanel">
@@ -512,15 +580,19 @@
 
     const tabHashByName = {
       Program: "program",
+      Party: "party",
       Drink: "drink",
       Food: "food",
+      Album: "album",
       Seating: "seating"
     };
 
     const tabNameByHash = {
       program: "Program",
+      party: "Party",
       drink: "Drink",
       food: "Food",
+      album: "Album",
       seating: "Seating"
     };
 
