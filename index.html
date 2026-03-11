@@ -64,7 +64,7 @@
 
     .tab {
       display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       background: linear-gradient(100deg, var(--primary), #8ca3c0);
       border-radius: 16px;
       overflow: hidden;
@@ -210,6 +210,27 @@
       line-height: 1.5;
     }
 
+    .match-list {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .match-option {
+      border: 1px solid #d8c9d2;
+      border-radius: 999px;
+      background: #fffafd;
+      color: #312632;
+      font-weight: 600;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .match-option:hover {
+      background: #f3e6ed;
+    }
+
     .result-table {
       color: var(--primary);
       font-size: 1.5rem;
@@ -337,8 +358,6 @@
     <div class="tab" role="tablist" aria-label="Wedding Info Tabs">
       <button class="tablinks active" data-tab="Program" data-hash="program" role="tab" aria-selected="true">Program</button>
       <button class="tablinks" data-tab="Party" data-hash="party" role="tab" aria-selected="false">Wedding Party</button>
-      <button class="tablinks" data-tab="Drink" data-hash="drink" role="tab" aria-selected="false">What to Drink</button>
-      <button class="tablinks" data-tab="Food" data-hash="food" role="tab" aria-selected="false">What to Eat</button>
       <button class="tablinks" data-tab="Album" data-hash="album" role="tab" aria-selected="false">Photo Album</button>
       <button class="tablinks" data-tab="Seating" data-hash="seating" role="tab" aria-selected="false">Seating Chart Lookup</button>
     </div>
@@ -349,31 +368,6 @@
       <p>5:30 PM - Cocktail & Boba Hour</p>
       <p>7:00 PM - Dinner</p>
       <p>8:00 PM - Dancing & Photobooth Open</p>
-    </section>
-
-    <section id="Drink" class="tabcontent" role="tabpanel">
-      <h2>What to Drink</h2>
-      <div class="drink-grid">
-        <article class="drink-card">
-          <h3>Signature Cocktails</h3>
-          <p>His: Old Fashioned</p>
-          <p>Hers: Paloma</p>
-          <p>Chloe's: Espresso Martini</p>
-        </article>
-
-        <article class="drink-card">
-          <h3>Boba Vendor</h3>
-          <p>Instagram: <a class="drink-link" href="https://www.instagram.com/mixmuse_cali?igsh=OGQ5ZDc2ODk2ZA%253D%253D&utm_source=qr" target="_blank" rel="noopener noreferrer">@mixmuse_cali</a></p>
-          <p>Drink Menu:</p>
-          <ul class="drink-menu">
-            <li>Jasmin</li>
-            <li>Matcha</li>
-            <li>White Grape</li>
-            <li>Yuzu</li>
-            <li>Strawberry Banana Smoothie</li>
-          </ul>
-        </article>
-      </div>
     </section>
 
     <section id="Party" class="tabcontent" role="tabpanel">
@@ -400,9 +394,9 @@
       <p>Matthew Rajaratnam</p>
 
       <h3 class="party-role">Groomsmen</h3>
-      <p>Stephen Palani</p>
       <p>James An</p>
-      <p>Nick Tan</p>
+      <p>Stephen Palani</p>
+      <p>Nik Tan</p>
 
       <h3 class="party-role">Flower Girl</h3>
       <p>Natalie Kim</p>
@@ -410,34 +404,6 @@
       <h3 class="party-role">Ring Bearer</h3>
       <p>Drew Seo</p>
 
-    </section>
-
-    <section id="Food" class="tabcontent" role="tabpanel">
-      <h2>What to Eat</h2>
-      <h3 class="menu-section-title">Appetizers</h3>
-      <ul>
-        <li>Array of Fresh Sliced Fruit with Honey Yogurt Dip (V, GF)</li>
-        <li>Bacon Wrapped Wild Scallops (GF)</li>
-        <li>Fresh Mozzarella & Grape Tomato Caprese Skewer (V, GF)</li>
-        <li>Pulled Pork Canapes with Pineapple Salsa</li>
-        <li>Spicy Jamaican Jerk Chicken Skewers (GF)</li>
-        <li>Sweet & Tangy BBQ Meatballs</li>
-      </ul>
-
-      <h3 class="menu-section-title">Duet Plated Meal</h3>
-      <ul>
-        <li>Raspberry Walnut Salad (V, GF)</li>
-        <li>Fresh Bread and Butter (V)</li>
-        <li>Alaskan Cod with Grape Tomato Vinaigrette (GF)</li>
-        <li>Center Cut Sirloin with Savory Demi-glace</li>
-        <li>Herb Roasted Red Potatoes (VG, GF)</li>
-      </ul>
-
-      <h3 class="menu-section-title">Vegetarian Meal</h3>
-      <p>Five Cheese Tortellini with Pesto Cream Sauce</p>
-
-      <h3 class="menu-section-title">Kids Meal</h3>
-      <p>Chicken tenders, French fries, & fresh fruit</p>
     </section>
 
     <section id="Album" class="tabcontent" role="tabpanel">
@@ -581,8 +547,6 @@
     const tabHashByName = {
       Program: "program",
       Party: "party",
-      Drink: "drink",
-      Food: "food",
       Album: "album",
       Seating: "seating"
     };
@@ -590,8 +554,6 @@
     const tabNameByHash = {
       program: "Program",
       party: "Party",
-      drink: "Drink",
-      food: "Food",
       album: "Album",
       seating: "Seating"
     };
@@ -631,6 +593,30 @@
       openTab(tabName);
     }
 
+    function showTableResult(guest, resultDiv, floorPlan) {
+      resultDiv.innerHTML = `${guest.name}, you are seated at <span class="result-table">${guest.table}</span>.`;
+      floorPlan.style.display = "block";
+    }
+
+    function showMultipleMatches(matches, resultDiv, floorPlan) {
+      floorPlan.style.display = "none";
+
+      const optionsMarkup = matches
+        .map((guest, index) => `<button type="button" class="match-option" data-match-index="${index}">${guest.name}</button>`)
+        .join("");
+
+      resultDiv.innerHTML = `Multiple matches found. Please click your full name to continue:<div class="match-list">${optionsMarkup}</div>`;
+
+      resultDiv.querySelectorAll(".match-option").forEach((button) => {
+        button.addEventListener("click", () => {
+          const selectedGuest = matches[Number(button.dataset.matchIndex)];
+          if (selectedGuest) {
+            showTableResult(selectedGuest, resultDiv, floorPlan);
+          }
+        });
+      });
+    }
+
     function findTable() {
       const input = document.getElementById("nameInput").value.trim().toLowerCase();
       const resultDiv = document.getElementById("result");
@@ -643,16 +629,20 @@
       }
 
       const matches = guests.filter((guest) => guest.name.toLowerCase().includes(input));
+      const exactMatch = guests.find((guest) => guest.name.toLowerCase() === input);
+
+      if (exactMatch) {
+        showTableResult(exactMatch, resultDiv, floorPlan);
+        return;
+      }
 
       if (matches.length === 1) {
-        resultDiv.innerHTML = `${matches[0].name}, you are seated at <span class="result-table">${matches[0].table}</span>.`;
-        floorPlan.style.display = "block";
+        showTableResult(matches[0], resultDiv, floorPlan);
         return;
       }
 
       if (matches.length > 1) {
-        resultDiv.textContent = "Multiple matches found. Please enter your full name.";
-        floorPlan.style.display = "none";
+        showMultipleMatches(matches, resultDiv, floorPlan);
         return;
       }
 
